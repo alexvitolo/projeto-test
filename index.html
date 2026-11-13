@@ -27,7 +27,7 @@ h1{margin:4px 0 0;text-align:center;font-size:clamp(20px,5vw,38px);letter-spacin
 button{font:inherit;color:#fff;border:3px solid #000;border-bottom-width:6px;padding:12px 6px;min-height:52px;background:#4b2fa0;cursor:pointer;text-transform:uppercase;font-size:13px}
 button:active{transform:translateY(3px);border-bottom-width:3px}
 .bp{background:#2b2b35;border-color:#8a8a99 #000 #000 #8a8a99}.bc{background:#8e99a8;color:#000}
-.bh{background:#c47f00}.bx{background:#d4144f}.bn{background:#157a8a}
+.bca{background:#d6347f}.bmi{background:#8a3fd1}.bh{background:#c47f00}.bx{background:#d4144f}.bn{background:#157a8a}
 #ov{position:fixed;inset:0;z-index:9;background:radial-gradient(circle at 50% 30%,#4b1a8f,#0b0624 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:16px}
 #ov h2{margin:0;font-size:clamp(34px,10vw,84px);line-height:1;text-shadow:4px 4px 0 var(--pk),-4px -4px 0 var(--cy)}
 #ov h3{margin:0;font-size:clamp(16px,4vw,30px);color:var(--yl);letter-spacing:6px}
@@ -45,7 +45,7 @@ button:active{transform:translateY(3px);border-bottom-width:3px}
 <div id="ctl">
 <button class="bp" id="b0">🔥 Turbo do Polo</button><button class="bc" id="b1">⚡ Turbo do Civic</button>
 <button class="bh" id="b2">📣 Buzinar</button><button class="bx" id="b3">💥 Modo Caos</button>
-<button id="b4">⏸ Pausar</button><button class="bn" id="b5">🌄 Novo cenário</button><button id="b6">🔊 Som</button><button class="bn" id="b7">🎵 Música</button></div></div>
+<button id="b4">⏸ Pausar</button><button class="bn" id="b5">🌄 Novo cenário</button><button id="b6">🔊 Som</button><button class="bn" id="b7">🎵 Música</button><button class="bca" id="b8">💅 Carol</button><button class="bmi" id="b9">💋 Milene</button></div></div>
 <div id="ov"><h2>POLO VS CIVIC</h2><h3>THE ENDLESS RACE</h3><p>Nenhum dos dois aceita perder. A corrida nunca termina.</p><button id="go">▶ INICIAR CORRIDA</button></div>
 <script>
 "use strict";
@@ -71,7 +71,7 @@ const HONK=[["Bi-bi! O Polo pede passagem!","Polo buzinou: 'Sai da frente, prata
 /* ===== Estado ===== */
 let sc=0,sceneT=0,nt=0,tt=0,tm=0,pos=0,curve=0,bgOff=0,spd=1,started=false,paused=false,chaos=0,dist=0,over=0;
 let gp=.5,gv=0,tsign=1,tmag=.6,rt=4,lead=0,msgT=6,sm=0;
-const boost=[0,0],honk=[0,0],sw=[0,0],sp=[160,160],leads=[1,0],flm=[0,0],geo=[{},{}],pt=[],dec=[],tra=[];
+const dg=[0,0],boost=[0,0],honk=[0,0],sw=[0,0],sp=[160,160],leads=[1,0],flm=[0,0],geo=[{},{}],pt=[],dec=[],tra=[];
 let dsp=0,tsp=2;const stars=Array.from({length:45},()=>({x:Math.random(),y:Math.random()}));
 const rnd=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.random()*a.length|0];
 function newDec(p,side){const t=pick(TH[sc].d);return{p,side,type:t,o:Math.random(),h:28+Math.random()*34,w:12+Math.random()*10,k:Math.random()*3|0,c:pick(['#2c3e7a','#5a2c7a','#7a2c4a','#2c5a7a']),t:pick(SIGNS)}}
@@ -111,6 +111,31 @@ $('b2').onclick=()=>{if(!started)return;const i=Math.random()<.5?0:1;honk[i]=1.2
 $('b3').onclick=()=>{if(!started)return;chaos=9;rt=.2;shake=1;sfx('chaos');say('💥 MODO CAOS ATIVADO! 💥');burst(0,14);burst(1,14)};
 $('b4').onclick=()=>{paused=!paused;$('b4').textContent=paused?'▶ Continuar':'⏸ Pausar';if(paused)say('⏸ PAUSADO',0);else $('msg').classList.remove('s')};
 $('b5').onclick=()=>setScene((sc+1)%6);
+/* Carol (namorada do dono do Polo) zoa o Civic; Milene (namorada do dono do Civic) zoa o Polo */
+const JOKES=[[
+"Carol: O dono do Civic financia até o ar-condicionado e chama de patrimônio!",
+"Carol: Aquele Civic bebe tanto que o dono já tem cartão fidelidade no posto!",
+"Carol: Dono de Civic acha que VTEC é personalidade!",
+"Carol: O dono do Civic lava o carro todo sábado porque é a única coisa brilhando na vida dele!",
+"Carol: O dono do Civic ultrapassa no asfalto e leva ultrapassada na vida!",
+"Carol: Civic bebe mais que o dono em churrasco, e olha que é difícil!",
+"Carol: O dono do Civic é tão convencido que dá bom dia pro retrovisor!",
+"Carol: Civic é um Corolla com complexo de Ferrari, e o dono tem complexo de piloto!",
+"Carol: Se o dono do Civic corresse atrás dos boletos como corre atrás do Polo, estava rico!",
+"Carol: O posto já mandou cartão de Natal pro dono do Civic, de tanto que ele abastece!"],[
+"Milene: O Polo é pequeno porque o ego do dono já ocupa o espaço todo!",
+"Milene: O dono do Polo chama de 'esportivo' um carro que perde pra bicicleta elétrica!",
+"Milene: Polo é um carro horrível com ótima assessoria de imprensa... feita pelo dono!",
+"Milene: O dono do Polo só ganha corrida em simulador, e no modo fácil!",
+"Milene: Polo preto pra ninguém ver a poeira de tão atrás que ele fica!",
+"Milene: O dono do Polo fala de TSI como se fosse motor de Fórmula 1 e ele, o campeão!",
+"Milene: O Polo é um Civic que foi lavado errado, e o dono nunca aceitou!",
+"Milene: O dono do Polo acelera, acelera e o único que sai de lá é o barulho!",
+"Milene: Polo é carro de quem confunde 'compacto' com 'cabe no orçamento'!",
+"Milene: O dono do Polo dá turbo e ainda assim acha que o Civic está atrasado!"]],lastJ=[-1,-1];
+function joke(w){if(!started)return;let n;do{n=Math.random()*JOKES[w].length|0}while(n==lastJ[w]);lastJ[w]=n;
+ const tgt=w?0:1;honk[tgt]=.9;burst(tgt,8);tone(w?520:620,.08,'triangle',.05);setTimeout(()=>tone(w?780:880,.12,'triangle',.05),90);say((w?'💋 ':'💅 ')+JOKES[w][n],4200)}
+$('b8').onclick=()=>joke(0);$('b9').onclick=()=>joke(1);
 $('b7').onclick=()=>{mus=!mus;$('b7').textContent=mus?'🎵 Música':'🎵 Sem música'};
 $('b6').onclick=()=>{snd=!snd;if(master)master.gain.value=snd?.5:0;$('b6').textContent=snd?'🔊 Som':'🔇 Mudo'};
 /* ===== Partículas ===== */
@@ -140,10 +165,13 @@ function update(dt){
  dsp-=dt;if(dsp<=0){dsp=.45/spd;for(const s of[-1,1])if(Math.random()<.6)dec.push(newDec(0,s))}
  for(const d of dec)d.p+=dt*(.1+d.p)*spd*.9;for(let i=dec.length-1;i>=0;i--)if(dec[i].p>1.3)dec.splice(i,1);
  tsp-=dt;if(tsp<=0){tsp=rnd(2.5,5);tra.push({p:0,l:pick([-.75,0,.75]),c:pick(['#d33','#3a6','#e9a','#37c','#ee4'])})}
- for(const v of tra)v.p+=dt*(.04+.5*v.p)*spd*.55;for(let i=tra.length-1;i>=0;i--)if(tra[i].p>.6)tra.splice(i,1);
+ for(const v of tra)v.p+=dt*(.04+.5*v.p)*spd*.55;for(let i=tra.length-1;i>=0;i--)if(tra[i].p>1.2)tra.splice(i,1);
  /* geometria dos carros */
- for(let i=0;i<2;i++){const L=i?-gp:gp,y=H*(.82-.12*L),p=(y-HY)/(H-HY),k=(.6+p*1.3)*(por?.85:1);
-  geo[i]={y,k,x:roadX(p)+((i?.32:-.32)+sw[i])*hw(p)*.8,p,L}}
+ for(let i=0;i<2;i++){const L=i?-gp:gp,y=H*(.82-.12*L),p=(y-HY)/(H-HY),k=(.6+p*1.3)*(por?.85:1),cb=(i?.32:-.32)+sw[i];let need=0;
+  /* desvio: se há carro de trânsito à frente na mesma faixa, empurra para o lado */
+  for(const v of tra){if(v.p<p-.32||v.p>p+.03)continue;const d=cb-v.l;if(Math.abs(d)<.46){const s=(d>=0?1:-1)*(.5-Math.abs(d));if(Math.abs(s)>Math.abs(need))need=s}}
+  dg[i]+=(need-dg[i])*Math.min(1,dt*6);const ln=Math.max(-1.05,Math.min(1.05,cb+dg[i]));
+  geo[i]={y,k,x:roadX(p)+ln*hw(p)*.8,p,L}}
  /* fumaça e partículas */
  sm-=dt;if(sm<=0&&spd>0){sm=.06;for(let i=0;i<2;i++){const q=geo[i];for(const s of[-1,1])pt.push({x:q.x+s*12*q.k,y:q.y,vx:rnd(-8,8),vy:rnd(-4,6),l:.5,c:'rgba(210,210,220,.55)',s:2})}}
  for(const q of pt){q.x+=q.vx*dt;q.y+=q.vy*dt;q.l-=dt}for(let i=pt.length-1;i>=0;i--)if(pt[i].l<=0)pt.splice(i,1);
@@ -168,7 +196,7 @@ function carCivic(br,fl){R(-16,-1,32,2,'rgba(0,0,0,.35)');wheels(15);
  const c=br?'#ff4a5c':'#d4112a';R(-15,-12,10,3,c);R(5,-12,10,3,c);R(-5,-11,10,1,'#8a0f20');R(-15,-12,10,1,'#ff8a96');R(5,-12,10,1,'#ff8a96');
  R(-2,-10,4,3,'#d9dde3');R(-1,-9,2,1,'#555');R(-4,-7,8,2,'#f0ecc0');R(-14,-4,4,2,'#aaa');R(10,-4,4,2,'#aaa');
  if(fl){flame(1,-14,4);flame(1,10,4)}}
-function drawCar(i){const q=geo[i];const lean=curve*.05+(sw[i]*.12),bn=Math.sin(tt*12+i*2)*.5*q.k,br=Math.floor(tt*5+i)%4==0||boost[1-i]>0,fl=flm[i]>0||chaos>0&&Math.random()<.5;
+function drawCar(i){const q=geo[i];const lean=curve*.05+(sw[i]*.12)+dg[i]*.12,bn=Math.sin(tt*12+i*2)*.5*q.k,br=Math.floor(tt*5+i)%4==0||boost[1-i]>0,fl=flm[i]>0||chaos>0&&Math.random()<.5;
  if(nt>.2){g.globalAlpha=.3*nt;R(q.x-16*q.k,q.y,32*q.k,6*q.k,'#f22');g.fillStyle='#ffffb0';g.beginPath();g.moveTo(q.x-8*q.k,q.y-16*q.k);g.lineTo(q.x+8*q.k,q.y-16*q.k);g.lineTo(q.x+22*q.k,HY);g.lineTo(q.x-22*q.k,HY);g.fill();g.globalAlpha=1}
  g.save();g.translate(Math.round(q.x),Math.round(q.y+bn));g.rotate(lean);g.scale(q.k,q.k);i?carCivic(br,fl):carPolo(br,fl);g.restore();
  g.font='bold 6px monospace';g.textAlign='center';g.fillStyle=i?'#9fe8ff':'#ff9bd0';g.fillText(i?'CIVIC':'POLO',q.x,q.y-24*q.k);
@@ -187,7 +215,7 @@ function dsprite(d){const p=d.p,y=HY+p*(H-HY),s=.1+p*(por?1.1:1.6),x=roadX(p)+d.
  case'cow':{const wx=Math.sin(tt*3+d.o*9)*2;q(-6+wx,-8,12,6,'#f4f4f4');q(-3+wx,-7,3,3,'#222');q(5+wx,-10,4,4,'#f4f4f4');q(-5+wx,-2,2,2,'#222');q(3+wx,-2,2,2,'#222');break}
  case'sign':q(-1,-14,2,14,'#888');q(-16,-28,32,15,'#fff');q(-15,-27,30,13,'#1b5e20');
   if(s>.45){g.font='bold '+Math.max(3,Math.round(3.4*s))+'px monospace';g.textAlign='center';g.fillStyle='#fff';g.fillText(d.t,x,y-17*s)}break}}
-function dtra(v){const p=v.p,y=HY+p*(H-HY),s=.1+p*1.5,x=roadX(p)+v.l*hw(p)*.8,q=(ox,oy,w,h,c)=>R(Math.round(x+ox*s),Math.round(y+oy*s),Math.max(1,Math.round(w*s)),Math.max(1,Math.round(h*s)),c);
+function dtra(v){const p=v.p,y=HY+p*(H-HY),s=.15+p*2.2,x=roadX(p)+v.l*hw(p)*.8,q=(ox,oy,w,h,c)=>R(Math.round(x+ox*s),Math.round(y+oy*s),Math.max(1,Math.round(w*s)),Math.max(1,Math.round(h*s)),c);
  q(-8,-9,16,6,v.c);q(-6,-14,12,5,'#223');q(-8,-8,3,2,'#fff2a0');q(5,-8,3,2,'#fff2a0');q(-7,-3,3,3,'#111');q(4,-3,3,3,'#111')}
 function render(){
  g.save();if(shake>0||chaos>0){const m=Math.max(shake,chaos>0?.5:0)*(paused?0:1.5);g.translate(Math.round(rnd(-m,m)),Math.round(rnd(-m,m)))}
@@ -202,8 +230,7 @@ function render(){
   R(rx-w,y,w*2,1,col([cur.rd[0]+b*7,cur.rd[1]+b*7,cur.rd[2]+b*7]));
   if(((z*.25+pos*.5)|0)&1){const lw=Math.max(1,w*.025);R(rx-w/3-lw/2,y,lw,1,'#f4f4f4');R(rx+w/3-lw/2,y,lw,1,'#f4f4f4')}}
  /* objetos e carros em ordem de profundidade */
- const all=dec.map(d=>({p:d.p,f:()=>dsprite(d)})).concat(tra.map(v=>({p:v.p,f:()=>dtra(v)})));all.sort((a,b)=>a.p-b.p);all.forEach(o=>o.f());
- (geo[0].y<geo[1].y?[0,1]:[1,0]).forEach(drawCar);
+ const all=dec.map(d=>({p:d.p,f:()=>dsprite(d)})).concat(tra.map(v=>({p:v.p,f:()=>dtra(v)})),[0,1].map(i=>({p:geo[i].p,f:()=>drawCar(i)})));all.sort((a,b)=>a.p-b.p);all.forEach(o=>o.f());
  for(const q of pt){g.globalAlpha=Math.min(1,q.l*2);R(q.x|0,q.y|0,q.s,q.s,q.c)}g.globalAlpha=1;
  /* velocidade e caos */
  if(Math.max(boost[0],boost[1])>0||chaos>0){g.strokeStyle='rgba(255,255,255,.35)';g.lineWidth=1;g.beginPath();for(let i=0;i<16;i++){const a=i*.4+.2,r1=30+((tt*400+i*37)%120);g.moveTo(W/2+Math.cos(a)*r1*1.4,HY+Math.sin(a)*r1*.6+20);g.lineTo(W/2+Math.cos(a)*(r1+25)*1.4,HY+Math.sin(a)*(r1+25)*.6+20)}g.stroke()}
